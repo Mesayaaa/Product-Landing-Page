@@ -151,6 +151,7 @@
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
       <div class="loading-spinner"></div>
+      <div style="color: white; margin-top: 20px; font-size: 18px;">Loading...</div>
     </div>
     
     <div id="root"></div>
@@ -158,6 +159,19 @@
     <script>
       // Remove loading screen after page load
       window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loadingScreen = document.getElementById('loading-screen');
+          if (loadingScreen) {
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+              loadingScreen.remove();
+            }, 500);
+          }
+        }, 500); // Reduced from 1000ms to 500ms
+      });
+      
+      // Also remove loading screen when DOM is ready
+      document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
           const loadingScreen = document.getElementById('loading-screen');
           if (loadingScreen) {
